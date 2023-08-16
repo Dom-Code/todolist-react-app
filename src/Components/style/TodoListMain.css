@@ -1,0 +1,22 @@
+#container {
+  min-width: 50vh;
+}
+
+#left-col {
+  height: 80vh;
+
+}
+
+#right-col {
+  height: 80vh;
+}
+
+#todoListContainer {
+  /* margin-top: 10px; */
+  margin-bottom: 10%;
+}
+
+#todosContainer {
+  padding-right: 15px;
+  margin-bottom: 10%;
+}

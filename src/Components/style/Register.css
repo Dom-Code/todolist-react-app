@@ -1,0 +1,38 @@
+/* #register-container {
+  position: relative;
+  min-width: .50vw
+}
+ */
+
+
+ #register {
+  width: 80%;
+  margin-top: 10%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.row {
+  margin-bottom: 6%
+}
+
+.feedback {
+  text-align: right;
+}
+
+.input-box {
+  border-radius: 7px;
+}
+
+.label {
+  margin-right: 3%;
+  margin-top: 5px;
+}
+
+#submit-button {
+margin-right: 10%;
+}
+
+#modal-success {
+  color: green
+}

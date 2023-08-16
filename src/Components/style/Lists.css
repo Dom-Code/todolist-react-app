@@ -1,0 +1,16 @@
+.list-name {
+  text-align: center;
+  cursor: text;
+}
+
+#edit-error {
+  color: red
+}
+
+#edit-buttons {
+  margin-top: 15px;
+}
+
+#submit-edit-button {
+  margin-right: 3px;
+}
