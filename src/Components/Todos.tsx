@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useContext } from 'react';
+import { useState, useEffect, useCallback, useContext } from 'react';
 import {
   Button,
   Modal,
@@ -16,20 +16,22 @@ import {
   faCheck,
 } from '@fortawesome/free-solid-svg-icons';
 import { AxiosRequestConfig } from 'axios';
-import { GeneralObject } from './Routes/TodoListMain';
 import ValidationContext from '../Context/ValidationContext';
-import { ListProps } from './Routes/TodoListMain';
+import { TodosProps } from './Routes/TodoListMain';
 import useAxiosPrivate from '../Hooks/useAxiosPrivate';
+import { AxiosError, AxiosResponse } from '../../node_modules/axios/index';
+import { Todo } from '../Context/ValidationContext';
+import * as React from 'react';
 
-const Todos = ({ listId, setListId }: ListProps) => {
+const Todos = ({ listId }: TodosProps) => {
   const [todoError, setTodoError] = useState(false);
-  const [completeTodos, setCompleteTodos] = useState<Array<any>>([]);
-  const [incompleteTodos, setIncompleteTodos] = useState<Array<any>>([]);
+  const [completeTodos, setCompleteTodos] = useState<Array<Todo>>([]);
+  const [incompleteTodos, setIncompleteTodos] = useState<Array<Todo>>([]);
   const [todoId, setTodoId] = useState<null | string>('');
   const [todoSubmitted, setTodoSubmitted] = useState(false);
   const [submitDisabled, setSubmitDisabled] = useState(true);
   const [editSubmitDisabled, setEditSubmitDisabled] = useState(true);
-  const [clickedElement, setClickedElement] = useState<any>(null);
+  const [clickedElement, setClickedElement] = useState<Element | null>(null);
   const data = useContext(ValidationContext);
   const axiosPrivate = useAxiosPrivate();
 
@@ -73,19 +75,23 @@ const Todos = ({ listId, setListId }: ListProps) => {
     // config file is used to pass set the data object of axios request.
     axiosPrivate
       .post('/createTodo', config)
-      .then((res) => {
-        const newTodo = {
+      .then((res: AxiosResponse) => {
+        const newTodo: Todo = {
           name: name,
           list_id: listId,
           _id: res.data.todoId,
           completed: false,
+          data: undefined,
+          updatedAt: undefined,
+          _v: undefined,
+          createAt: undefined,
         };
         data.setTodos([...data.todos, newTodo]);
         setTodoId('');
         setTodoError(false);
         setTodoSubmitted(false);
       })
-      .catch((err) => {
+      .catch((err: AxiosError) => {
         console.log(err);
         setTodoError(true);
       });
@@ -94,14 +100,14 @@ const Todos = ({ listId, setListId }: ListProps) => {
   const deleteTodo = (id: string) => {
     axiosPrivate
       .delete('/deleteTodo', config)
-      .then((response) => {
-        let newList = data.todos.filter((todo) => {
+      .then(() => {
+        const newList = data.todos.filter((todo) => {
           return todo._id !== id;
         });
         data.setTodos(newList);
         // console.log(response.data.message);
       })
-      .catch((err) => {
+      .catch((err: AxiosError) => {
         console.log('Something went wrong');
         return err;
       });
@@ -117,12 +123,12 @@ const Todos = ({ listId, setListId }: ListProps) => {
       })
       .then(() => {
         const index = data.todos.findIndex((item) => item._id === editId);
-        let newList = data.todos.slice();
+        const newList = data.todos.slice();
         newList[index].name = editName;
         data.setTodos(newList);
         closeEditModal();
       })
-      .catch((err) => {
+      .catch((err: AxiosError) => {
         console.log(err);
       });
   };
@@ -134,27 +140,29 @@ const Todos = ({ listId, setListId }: ListProps) => {
   const toggleCompleted = (id: string, completed: boolean) => {
     axiosPrivate
       .put('/toggleCompleted', { data: { todoId: id, completed } })
-      .then((res) => {
+      .then(() => {
         const index = getTodoIndex(id);
-        let newList = data.todos.slice();
+        const newList = data.todos.slice();
         newList[index].completed = completed;
         data.setTodos(newList);
       })
-      .catch((err) => {
+      .catch((err: AxiosError) => {
         console.log(err);
       });
   };
 
-  const createListItem = (todo: GeneralObject, index: number) => {
+  const createListItem = (todo: Todo, index: number) => {
     return (
       <ListGroup.Item
         id={`${todo._id}`}
         key={index}
         variant='secondary'
-        onClick={(e) => {
-          const clicked = e.currentTarget;
+        onClick={(e: React.MouseEvent) => {
+          const target = e.currentTarget as Element;
+
+          // const clicked = e.currentTarget;
           // clicked?.classList.add('active');
-          setClickedElement(clicked);
+          setClickedElement(target);
           setTodoId(todo._id);
         }}
         onLoad={() => {
@@ -198,7 +206,9 @@ const Todos = ({ listId, setListId }: ListProps) => {
                   icon={faSquareXmark}
                   size='sm'
                   onClick={() => {
-                    clickedElement.classList.remove('active');
+                    if (clickedElement) {
+                      clickedElement.classList.remove('active');
+                    }
 
                     toggleCompleted(todo._id, !todo.completed);
                   }}
@@ -213,8 +223,8 @@ const Todos = ({ listId, setListId }: ListProps) => {
                   style={{ marginRight: '10px', color: 'green' }}
                   icon={faCheck}
                   size='sm'
-                  onClick={(e) => {
-                    clickedElement.classList.remove('active');
+                  onClick={() => {
+                    clickedElement?.classList.remove('active');
 
                     toggleCompleted(todo._id, !todo.completed);
                   }}
@@ -239,13 +249,9 @@ const Todos = ({ listId, setListId }: ListProps) => {
     );
   };
 
-  // useEffect(() => {
-  //   setTempList(data.todos);
-  // }, []);
-
   useEffect(() => {
-    const complete: Array<{}> = [];
-    const incomplete: Array<{}> = [];
+    const complete: Array<Todo> = [];
+    const incomplete: Array<Todo> = [];
 
     data.todos.forEach((todo) => {
       if (todo.list_id === listId) {
@@ -416,7 +422,8 @@ const Todos = ({ listId, setListId }: ListProps) => {
               Incomplete
               <br />
               <div id='todos-box'>
-                {incompleteTodos.map((todo, i) => {
+                {incompleteTodos.map((todo: Todo, i) => {
+                  console.log(todo);
                   return createListItem(todo, i);
                 })}
               </div>
@@ -427,7 +434,30 @@ const Todos = ({ listId, setListId }: ListProps) => {
               Completed
               <br />
               <div id='todos-box'>
-                {completeTodos.map((todo, i) => {
+                {completeTodos.map((todo: Todo, i) => {
+                  /*
+                  input: array of objects
+                  output/sideffect: return a call to 
+                  createListItem with an object that has 
+                  items specific to the Todo interface as 
+                  first argument and i as a second argument. 
+
+                  edge cases: 
+                    -input array is empty.
+                    - object does not have specific item
+
+                  plan
+                    - iterate over array of todos with map
+                    - at each todo object 
+                      -> create an object 
+                      -> assign wanted elements to new objects
+                      * concern
+                        -> does assigning a key value pair from another 
+                        object create a copy or a reference? 
+                
+
+                  */
+
                   return createListItem(todo, i);
                 })}
               </div>
@@ -456,12 +486,3 @@ const Todos = ({ listId, setListId }: ListProps) => {
 };
 
 export default Todos;
-
-/*
-In a `useEffect` hook with the second argument set to an empty array, causing it to run only once 
-at the initial run, we set the state `tempList` to the `todos` array from the validation context.
-
-In another `useEffect` hook, set to re-render when the user selects a new list or when `tempList` 
-is updated, the todos in the `tempList` state value are divided into two separate arrays: `complete` 
-and `incomplete`. These two arrays will correspond to separate state values and will be used to display the todos.
-*/

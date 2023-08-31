@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -10,8 +10,8 @@ import axios from 'axios';
 // import { RegisterFormProps } from './Account';
 import { useNavigate } from 'react-router-dom';
 
-import { Formik, validateYupSchema } from 'formik';
-import { object, string, array, InferType } from 'yup';
+import { Formik } from 'formik';
+import { object, string } from 'yup';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const Register = () => {
       navigate('/account/login');
     }, 3000);
   };
-  const [submitButtonDisabled, setSubmitButtonDisabled] = useState(true);
+  // const [submitButtonDisabled, setSubmitButtonDisabled] = useState(true);
   const [email, setEmail] = useState<null | string>(null);
   const [name, setName] = useState<null | string>(null);
   const [password, setPassword] = useState<null | string>(null);
@@ -86,15 +86,7 @@ const Register = () => {
         }}
         onSubmit={() => {}}
       >
-        {({
-          handleSubmit,
-          handleChange,
-          handleBlur,
-          values,
-          touched,
-          isValid,
-          errors,
-        }) => (
+        {({ handleChange, values, errors }) => (
           <Form
             noValidate
             onSubmit={(e) => {
@@ -202,7 +194,7 @@ const Register = () => {
             </Row>
             <Button
               id='submit-button'
-              disabled={submitButtonDisabled}
+              // disabled={submitButtonDisabled}
               type='submit'
             >
               Submit form

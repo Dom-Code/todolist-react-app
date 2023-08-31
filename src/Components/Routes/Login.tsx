@@ -1,16 +1,17 @@
-import React, { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // import { LoginProps } from './Account';
 import { Button, Col, Form, Modal } from 'react-bootstrap';
 import axios from 'axios';
 import '../style/Login.css';
 import ValidationContext from '../../Context/ValidationContext';
+import { AxiosResponse } from '../../../node_modules/axios/index';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isInvalid, setIsInvalid] = useState(false);
-  const [isValid, setIsValid] = useState(false);
+  // const [isValid, setIsValid] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
@@ -29,7 +30,7 @@ const Login = () => {
       url: 'http://localhost:4000/api/login',
       data: loginData,
     })
-      .then((response) => {
+      .then((response: AxiosResponse) => {
         // console.log(response);
         const accessToken = response?.data?.accessToken;
         const refreshToken = response?.data?.refreshToken;
@@ -70,7 +71,7 @@ const Login = () => {
               }
             }}
             isInvalid={isInvalid}
-            isValid={isValid}
+            isValid={isInvalid}
           />
         </Form.Group>
 
@@ -90,7 +91,7 @@ const Login = () => {
               }
             }}
             isInvalid={isInvalid}
-            isValid={isValid}
+            isValid={isInvalid}
           />
         </Form.Group>
 

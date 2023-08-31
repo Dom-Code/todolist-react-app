@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import ValidationContext from '../../Context/ValidationContext';
 
 const Logout = () => {
@@ -10,6 +10,7 @@ const Logout = () => {
     data.setLists([]);
     data.setAccessToken('');
     sessionStorage.removeItem('todolistRefreshToken');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

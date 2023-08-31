@@ -1,12 +1,13 @@
-import React, { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext, FormEvent } from 'react';
 import { Modal, Form, Button, ListGroup } from 'react-bootstrap';
-import { GeneralObject } from './Routes/TodoListMain';
 import { ListProps } from './Routes/TodoListMain';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ValidationContext from '../Context/ValidationContext';
-import { faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import useAxiosPrivate from '../Hooks/useAxiosPrivate';
 import './style/Lists.css';
+import { AxiosError, AxiosResponse } from '../../node_modules/axios/index';
+import * as React from 'react';
 
 export interface currentListIdProps {
   currentListId: null | string;
@@ -14,7 +15,7 @@ export interface currentListIdProps {
 
 const Lists = ({ listId, setListId }: ListProps) => {
   const showTodoListModal = () => setTodoListModal(true);
-  const [previousElement, setPreviousElement] = useState<GeneralObject>();
+  const [previousElement, setPreviousElement] = useState<Element>();
   const data = useContext(ValidationContext);
   const axiosPrivate = useAxiosPrivate();
 
@@ -43,35 +44,42 @@ const Lists = ({ listId, setListId }: ListProps) => {
   const createTodoList = () => {
     axiosPrivate
       .post('/createTodoList', { data: { name: todoListName } })
-      .then((res) => {
+      .then((res: AxiosResponse) => {
         if (res.status === 200) {
           closeTodoListModal();
           const newList = {
             _id: res.data.listId,
             name: todoListName,
+            createAt: '',
+            todos: [],
+            user_id: '',
+            __v: 0,
+            updatedAt: null,
           };
           const listsCopy = data.lists;
           const updatedCopy = [...listsCopy, newList];
           data.setLists(updatedCopy);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err: AxiosError) => console.log(err));
   };
 
-  const deleteTodoList = (e: any) => {
+  const deleteTodoList = (e: React.MouseEvent) => {
+    const target = e.currentTarget as Element;
+    const parent = target.parentElement;
     axiosPrivate
       .delete('/deleteTodoList', { data: { listId: listId } })
-      .then((res) => {
+      .then(() => {
         const lists = data.lists.slice();
         const updatedLists = lists.filter((list) => {
           return listId !== list._id;
         });
         data.setLists(updatedLists);
         setListId(null);
-        e.currentTarget?.parentNode.classList.remove('active');
+        parent?.classList.remove('active');
         //removes highlight
       })
-      .catch((err) => {
+      .catch((err: AxiosError) => {
         console.log(err);
       });
   };
@@ -82,7 +90,7 @@ const Lists = ({ listId, setListId }: ListProps) => {
     axiosPrivate
       .put('/editListName', { data: { listName: editName, listId: listId } })
 
-      .then((res) => {
+      .then(() => {
         closeEditTodoListModal();
 
         const newList = data.lists.slice();
@@ -92,7 +100,7 @@ const Lists = ({ listId, setListId }: ListProps) => {
         newList[editIndex].name = editName;
         // setTempTodoList(newList);
       })
-      .catch((err) => {
+      .catch((err: AxiosError) => {
         setEditError(err.message);
         console.log(err.message);
       });
@@ -118,7 +126,7 @@ const Lists = ({ listId, setListId }: ListProps) => {
         ) : (
           <Modal.Body>
             <Form
-              onSubmit={(e) => {
+              onSubmit={(e: FormEvent) => {
                 e.preventDefault();
                 createTodoList();
               }}
@@ -126,8 +134,9 @@ const Lists = ({ listId, setListId }: ListProps) => {
               <Form.Group className='mb-3' controlId='formTodoListName'>
                 <Form.Label>What is the name of this todo list?</Form.Label>
                 <Form.Control
-                  onChange={(e) => {
-                    setTodoListName(e.currentTarget.value);
+                  onChange={(e: FormEvent) => {
+                    const target = e.currentTarget as HTMLInputElement;
+                    setTodoListName(target.value);
                   }}
                   type='text'
                   placeholder='Todo list name'
@@ -147,7 +156,7 @@ const Lists = ({ listId, setListId }: ListProps) => {
         </Modal.Header>
         <Modal.Body>
           <Form
-            onSubmit={(e) => {
+            onSubmit={(e: FormEvent) => {
               e.preventDefault();
               editListName();
             }}
@@ -155,8 +164,9 @@ const Lists = ({ listId, setListId }: ListProps) => {
             <Form.Group>
               <Form.Label>Edit your list name</Form.Label>
               <Form.Control
-                onChange={(e) => {
-                  setEditName(e.currentTarget.value);
+                onChange={(e: FormEvent) => {
+                  const target = e.currentTarget as HTMLInputElement;
+                  setEditName(target.value);
                 }}
                 type='text'
                 value={editName}
@@ -180,10 +190,10 @@ const Lists = ({ listId, setListId }: ListProps) => {
           <ListGroup.Item
             id={`${list._id}`}
             key={i}
-            onClick={(e) => {
-              const clickedElement = e.currentTarget;
+            onClick={(e: React.MouseEvent) => {
+              const clickedElement = e.currentTarget as Element;
               setListId(list._id);
-              if (previousElement) {
+              if (previousElement && clickedElement) {
                 previousElement.classList.remove('active');
                 clickedElement.classList.add('active');
                 setPreviousElement(clickedElement);
@@ -212,7 +222,7 @@ const Lists = ({ listId, setListId }: ListProps) => {
               <FontAwesomeIcon
                 icon={faTrash}
                 size='sm'
-                onClick={(e) => {
+                onClick={(e: React.MouseEvent) => {
                   deleteTodoList(e);
                   e.stopPropagation();
                 }}

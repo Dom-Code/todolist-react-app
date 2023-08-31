@@ -1,19 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Lists from '../Lists';
 import Todos from '../Todos';
 // import Todos from './Todos';
 import { Container, Col, Row, ListGroup } from 'react-bootstrap';
 import '../style/TodoListMain.css';
 import useValidation from '../../Hooks/useValidation';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export interface GeneralObject {
-  [key: string]: any;
+  key: string;
 }
 
 export interface ListProps {
   listId: string | null;
   setListId: React.Dispatch<React.SetStateAction<string | null>>;
+}
+
+export interface TodosProps {
+  listId: string | null;
 }
 
 const TodoListMain = () => {
@@ -25,6 +29,7 @@ const TodoListMain = () => {
     if (!isValid) {
       nav('/');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isValid]);
 
   return (
@@ -41,7 +46,7 @@ const TodoListMain = () => {
           <Col id='right-col'>
             {listId ? (
               <ListGroup id='todosContainer'>
-                <Todos listId={listId} setListId={setListId} />
+                <Todos listId={listId} />
               </ListGroup>
             ) : null}
           </Col>

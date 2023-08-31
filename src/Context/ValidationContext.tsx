@@ -1,24 +1,35 @@
-import React, { createContext } from 'react';
+import { createContext } from 'react';
 
 export interface IList {
   name: string;
   createAt: string;
-  todos: Array<any>;
+  todos: Array<object>;
   user_id: string;
   __v: number;
   _id: string;
   updatedAt: string | null;
 }
 
+export interface Todo {
+  name: string;
+  list_id: string | null;
+  _id: string;
+  completed: boolean;
+  data: string | undefined;
+  updatedAt: string | undefined;
+  _v: number | undefined;
+  createAt: string | undefined;
+}
+
 interface iValidation {
-  accessToken: String;
-  setAccessToken: React.Dispatch<React.SetStateAction<String>>;
+  accessToken: string;
+  setAccessToken: React.Dispatch<React.SetStateAction<string>>;
   isValid: boolean;
   setIsValid: React.Dispatch<React.SetStateAction<boolean>>;
-  lists: Array<any>;
+  lists: Array<IList>;
   setLists: React.Dispatch<React.SetStateAction<Array<IList>>>;
-  todos: Array<any>;
-  setTodos: React.Dispatch<React.SetStateAction<Array<any>>>;
+  todos: Array<Todo>;
+  setTodos: React.Dispatch<React.SetStateAction<Array<Todo>>>;
 }
 
 const defaultContext = {

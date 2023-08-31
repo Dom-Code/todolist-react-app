@@ -40,7 +40,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './Components/Routes/Home';
 import ValidationContext from './Context/ValidationContext';
-import { IList } from './Context/ValidationContext';
+import { IList, Todo } from './Context/ValidationContext';
 import Nav from './Nav';
 import Account from './Components/Routes/Account';
 import Login from './Components/Routes/Login';
@@ -50,10 +50,10 @@ import Register from './Components/Routes/Register';
 import Logout from './Components/Routes/Logout';
 
 function App() {
-  const [accessToken, setAccessToken] = useState<String>('');
+  const [accessToken, setAccessToken] = useState<string>('');
   const [isValid, setIsValid] = useState<boolean>(false);
   const [lists, setLists] = useState<Array<IList>>([]);
-  const [todos, setTodos] = useState<Array<{}>>([]);
+  const [todos, setTodos] = useState<Array<Todo>>([]);
   const userContext = {
     accessToken,
     setAccessToken,

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import AccountTabs from '../AccountTabs';
 import ValidationContext from '../../Context/ValidationContext';
@@ -20,8 +20,7 @@ const Account = () => {
   const axiosPrivate = useAxiosPrivate();
 
   useEffect(() => {
-    if (data.isValid) {
-    } else {
+    if (!data.isValid) {
       axiosPrivate
         .get('/getUsersTodolists')
         .then((response: AxiosResponse) => {
@@ -30,7 +29,7 @@ const Account = () => {
           data.setTodos(response.data.todos);
           nav('/');
         })
-        .catch((err) => {
+        .catch(() => {
           data.setIsValid(false);
           data.setLists([]);
           data.setTodos([]);

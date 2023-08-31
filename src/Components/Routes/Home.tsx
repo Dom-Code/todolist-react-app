@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import ValidationContext from '../../Context/ValidationContext';
 import useAxiosPrivate from '../../Hooks/useAxiosPrivate';
 import { AxiosResponse } from 'axios';
@@ -19,8 +19,7 @@ const Home = () => {
         data.setTodos(response.data.todos);
         // navigate('/todolists');
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         data.setIsValid(false);
         data.setLists([]);
         data.setTodos([]);
