@@ -67,7 +67,7 @@ function App() {
 
   const router = createBrowserRouter([
     {
-      path: '/',
+      path: '/todolist-react-app',
       element: <Nav />,
       errorElement: <ErrorPage />,
       children: [
