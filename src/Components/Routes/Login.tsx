@@ -39,10 +39,10 @@ const Login = () => {
 
         sessionStorage.setItem('todolistRefreshToken', refreshToken);
         handleShowModal();
-        navigate('/');
 
         setTimeout(() => {
           handleCloseModal();
+          // navigate('/todolist-react-app');
         }, 3000);
       })
       .catch((err) => {
@@ -111,7 +111,7 @@ const Login = () => {
         show={showModal}
         // onHide={handleCloseModal}
         onExited={() => {
-          navigate('/');
+          navigate('/todolist-react-app');
         }}
         backdrop='static'
         keyboard={false}

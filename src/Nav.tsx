@@ -10,8 +10,8 @@ const Nav = () => {
       {isValid ? (
         <>
           <Link to={'/todolist-react-app'}>Home</Link> |{' '}
-          <Link to={'/todolists'}>Lists</Link> |{' '}
-          <Link to={'/account'}>Account</Link>
+          <Link to={'/todolist-react-app/todolists'}>Lists</Link> |{' '}
+          <Link to={'/todolist-react-app/account'}>Account</Link>
         </>
       ) : (
         <>

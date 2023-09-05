@@ -423,7 +423,7 @@ const Todos = ({ listId }: TodosProps) => {
               <br />
               <div id='todos-box'>
                 {incompleteTodos.map((todo: Todo, i) => {
-                  console.log(todo);
+                  // console.log(todo);
                   return createListItem(todo, i);
                 })}
               </div>
