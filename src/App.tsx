@@ -86,6 +86,11 @@ function App() {
         },
       ],
     },
+    {
+      path: '*',
+      element: <ErrorPage />,
+      errorElement: <ErrorPage />,
+    },
   ]);
 
   return (

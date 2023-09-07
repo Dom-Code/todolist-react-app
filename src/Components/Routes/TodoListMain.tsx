@@ -27,7 +27,7 @@ const TodoListMain = () => {
 
   useEffect(() => {
     if (!isValid) {
-      nav('/');
+      nav('/todolist-react-app');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isValid]);
