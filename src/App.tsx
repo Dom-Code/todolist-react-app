@@ -48,6 +48,7 @@ import ErrorPage from './Components/Routes/ErrorPage';
 import TodoListMain from './Components/Routes/TodoListMain';
 import Register from './Components/Routes/Register';
 import Logout from './Components/Routes/Logout';
+import { createHashRouter } from '../node_modules/react-router-dom/dist/index';
 
 function App() {
   const [accessToken, setAccessToken] = useState<string>('');
@@ -65,33 +66,36 @@ function App() {
     setTodos,
   };
 
-  const router = createBrowserRouter([
-    {
-      path: '/todolist-react-app',
-      element: <Nav />,
-      errorElement: <ErrorPage />,
-      children: [
-        { index: true, element: <Home /> },
-        { path: 'todolists', element: <TodoListMain /> },
+  const router = createHashRouter(
+    [
+      {
+        path: '/todolist-react-app',
+        element: <Nav />,
+        errorElement: <ErrorPage />,
+        children: [
+          { index: true, element: <Home /> },
+          { path: 'todolists', element: <TodoListMain /> },
 
-        {
-          path: 'account',
-          element: <Account />,
-          errorElement: <ErrorPage />,
-          children: [
-            { path: 'login', element: <Login /> },
-            { path: 'register', element: <Register /> },
-            { path: 'logout', element: <Logout /> },
-          ],
-        },
-      ],
-    },
-    {
-      path: '*',
-      element: <ErrorPage />,
-      errorElement: <ErrorPage />,
-    },
-  ]);
+          {
+            path: 'account',
+            element: <Account />,
+            errorElement: <ErrorPage />,
+            children: [
+              { path: 'login', element: <Login /> },
+              { path: 'register', element: <Register /> },
+              { path: 'logout', element: <Logout /> },
+            ],
+          },
+        ],
+      },
+      {
+        path: '*',
+        element: <ErrorPage />,
+        errorElement: <ErrorPage />,
+      },
+    ],
+    { basename: '/' }
+  );
 
   return (
     <div className='App'>
