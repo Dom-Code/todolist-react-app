@@ -19,7 +19,7 @@ const useAxiosPrivate = () => {
         // console.log(`Original Access Token ${accessToken}`);
         if (!config.headers['Authorization']) {
           if (accessToken.length === 0) {
-            console.log('Request for new access token');
+            // console.log('Request for new access token');
             const newAccessToken = await refresh();
             config.headers[
               'Authorization'
@@ -27,7 +27,7 @@ const useAxiosPrivate = () => {
             // console.log(`New Access token: ${newAccessToken.data.accessToken}`);
             setAccessToken(newAccessToken.data.accessToken);
           } else {
-            console.log('Access token accepted');
+            // console.log('Access token accepted');
             config.headers['Authorization'] = `Bearer ${accessToken}`;
           }
 
@@ -38,7 +38,7 @@ const useAxiosPrivate = () => {
         return config;
       },
       (err) => {
-        console.log(err);
+        // console.log(err);
         return Promise.reject(err);
       }
     );

@@ -37,7 +37,7 @@
 import { useState } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createHashRouter, RouterProvider } from 'react-router-dom';
 import Home from './Components/Routes/Home';
 import ValidationContext from './Context/ValidationContext';
 import { IList, Todo } from './Context/ValidationContext';
@@ -48,7 +48,6 @@ import ErrorPage from './Components/Routes/ErrorPage';
 import TodoListMain from './Components/Routes/TodoListMain';
 import Register from './Components/Routes/Register';
 import Logout from './Components/Routes/Logout';
-import { createHashRouter } from '../node_modules/react-router-dom/dist/index';
 
 function App() {
   const [accessToken, setAccessToken] = useState<string>('');
@@ -69,7 +68,7 @@ function App() {
   const router = createHashRouter(
     [
       {
-        path: '/todolist-react-app',
+        path: '/',
         element: <Nav />,
         errorElement: <ErrorPage />,
         children: [

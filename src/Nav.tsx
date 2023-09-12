@@ -15,8 +15,7 @@ const Nav = () => {
         </>
       ) : (
         <>
-          <Link to={'/todolist-react-app/'}>Home</Link> |{' '}
-          <Link to={'/todolist-react-app/account'}>Account</Link>
+          <Link to={'/'}>Home</Link> | <Link to={'/account'}>Account</Link>
         </>
       )}
       {/* <Link to={'/'}>Home</Link> | <Link to={'/account'}>Account</Link> */}
