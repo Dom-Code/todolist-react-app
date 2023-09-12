@@ -111,7 +111,7 @@ const Login = () => {
         show={showModal}
         // onHide={handleCloseModal}
         onExited={() => {
-          navigate('/todolist-react-app');
+          navigate('/');
         }}
         backdrop='static'
         keyboard={false}
