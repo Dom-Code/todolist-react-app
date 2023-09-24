@@ -1,7 +1,10 @@
 .listItem {
   display:inline-flex;
   justify-content: space-between;
-  padding-right: 8px;
+  margin-right: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+
 }
 
 .closeTodoButton {
@@ -17,12 +20,18 @@
 .todoName {
   text-align: left;
   cursor: text;
+  max-width: 85%;
+  min-width: none;
+  white-space: initial;
+  /* border: 2px solid red; */
+  line-height: 16px;
+
 }
 
 #todos-box {
   border-radius: 4px;
   margin-bottom: 20px;
-  margin-top: 3px
+  margin-top: 3px;
 }
 
 #empty-new-todo-button{
@@ -38,4 +47,17 @@
 
 #edit-cancel-button {
   margin-right: 4px;
+}
+
+#todo-buttons {
+  /* border: 2px solid red; */
+  margin-left: 6%;
+}
+
+#all-todos {
+}
+
+#todos-container {
+  /* border: 2px solid red; */
+  height: 500px
 }

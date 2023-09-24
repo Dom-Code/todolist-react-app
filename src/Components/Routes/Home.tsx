@@ -2,10 +2,14 @@ import { useContext, useEffect } from 'react';
 import ValidationContext from '../../Context/ValidationContext';
 import useAxiosPrivate from '../../Hooks/useAxiosPrivate';
 import { AxiosResponse } from 'axios';
+import TodoListMain from './TodoListMain';
+import useValidation from '../../Hooks/useValidation';
+import '../style/Home.css';
 
 const Home = () => {
   const data = useContext(ValidationContext);
   const axiosPrivate = useAxiosPrivate();
+  const { isValid } = useValidation();
 
   useEffect(() => {
     // Would like to add a counter. Currently when user clicks on home, data
@@ -30,8 +34,14 @@ const Home = () => {
 
   return (
     <>
-      <h3>This is a simple Todo list using React</h3>
-      {/* <TodoListMain /> */}
+      {isValid ? (
+        <TodoListMain />
+      ) : (
+        <div id='home-text'>
+          <h3>This is a simple Todo List using React</h3>
+          <p>Please create an account or Log in</p>
+        </div>
+      )}
     </>
   );
 };

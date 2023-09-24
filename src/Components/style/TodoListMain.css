@@ -1,22 +1,40 @@
+#title {
+  padding: 1%;
+  /* border: 2px solid red */
+}
+
 #container {
-  min-width: 50vh;
+  margin: 0 auto;
+  /* padding-top: 3%; */
+  /* width: 80%; */
+
+
 }
 
 #left-col {
-  height: 80vh;
-
+  /* height: 80vh;
+  max-width: 50vw; */
+  /* border: 2px solid red */
+  /* position: inherit; */
+float:left;
+width: 50%;
 }
 
 #right-col {
-  height: 80vh;
+width: 50%;
+float: right;
+
 }
 
 #todoListContainer {
-  /* margin-top: 10px; */
-  margin-bottom: 10%;
+  max-width: 400px;
+  
 }
 
 #todosContainer {
-  padding-right: 15px;
-  margin-bottom: 10%;
+  max-width: 400px;
+}
+
+#lists-todos {
+
 }

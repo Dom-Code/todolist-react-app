@@ -25,18 +25,20 @@ const TodoListMain = () => {
   const { isValid } = useValidation();
   const nav = useNavigate();
 
-  useEffect(() => {
-    if (!isValid) {
-      nav('/todolist-react-app');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isValid]);
+  // useEffect(() => {
+  //   if (!isValid) {
+  //     nav('/todolist-react-app');
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [isValid]);
 
   return (
     <>
-      <h1>My Todo List</h1>
+      <div id='title'>
+        <h1>My Todo List</h1>
+      </div>
       <Container id='container'>
-        <Row>
+        <Row xs={1} md={2} id='lists-todos'>
           <Col id='left-col'>
             <div>List</div>
             <ListGroup id='todoListContainer'>
@@ -44,6 +46,7 @@ const TodoListMain = () => {
             </ListGroup>
           </Col>
           <Col id='right-col'>
+            <div>Todos</div>
             {listId ? (
               <ListGroup id='todosContainer'>
                 <Todos listId={listId} />

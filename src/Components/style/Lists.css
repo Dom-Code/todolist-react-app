@@ -1,6 +1,7 @@
 .list-name {
   text-align: center;
   cursor: text;
+  
 }
 
 #edit-error {
@@ -13,4 +14,14 @@
 
 #submit-edit-button {
   margin-right: 3px;
+}
+
+#lists {
+  /* border: 2px solid green; */
+  border-radius: 4px;
+  /* border: 2px solid red */
+}
+
+#add-button {
+  margin-top: 5%;
 }

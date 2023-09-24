@@ -1,5 +1,12 @@
 import { useEffect, useState, useContext, FormEvent } from 'react';
-import { Modal, Form, Button, ListGroup } from 'react-bootstrap';
+import {
+  Modal,
+  Form,
+  Button,
+  ListGroup,
+  OverlayTrigger,
+  Tooltip,
+} from 'react-bootstrap';
 import { ListProps } from './Routes/TodoListMain';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ValidationContext from '../Context/ValidationContext';
@@ -185,60 +192,68 @@ const Lists = ({ listId, setListId }: ListProps) => {
           </Form>
         </Modal.Body>
       </Modal>
-      {data.lists.map((list, i) => {
-        return (
-          <ListGroup.Item
-            id={`${list._id}`}
-            key={i}
-            onClick={(e: React.MouseEvent) => {
-              const clickedElement = e.currentTarget as Element;
-              setListId(list._id);
-              if (previousElement && clickedElement) {
-                previousElement.classList.remove('active');
-                clickedElement.classList.add('active');
-                setPreviousElement(clickedElement);
-                // load();
-              } else {
-                clickedElement.classList.add('active');
-                setPreviousElement(clickedElement);
-              }
-            }}
-            action
-            className='listItem'
-          >
-            <div
-              className='list-name'
-              onClick={() => {
-                setCurrentName(list.name);
-                setEditName(list.name);
-                setEditId(list._id);
-                setEditListModal(true);
+      <div id='lists'>
+        {data.lists.map((list, i) => {
+          return (
+            <ListGroup.Item
+              id={`${list._id}`}
+              key={i}
+              onClick={(e: React.MouseEvent) => {
+                const clickedElement = e.currentTarget as Element;
+                setListId(list._id);
+                if (previousElement && clickedElement) {
+                  previousElement.classList.remove('active');
+                  clickedElement.classList.add('active');
+                  setPreviousElement(clickedElement);
+                  // load();
+                } else {
+                  clickedElement.classList.add('active');
+                  setPreviousElement(clickedElement);
+                }
               }}
+              action
+              className='listItem'
             >
-              {list.name}
-            </div>
-
-            {list._id === listId ? (
-              <FontAwesomeIcon
-                icon={faTrash}
-                size='sm'
-                onClick={(e: React.MouseEvent) => {
-                  deleteTodoList(e);
-                  e.stopPropagation();
+              <div
+                className='list-name'
+                onClick={() => {
+                  setCurrentName(list.name);
+                  setEditName(list.name);
+                  setEditId(list._id);
+                  setEditListModal(true);
                 }}
-              />
-            ) : null}
-          </ListGroup.Item>
-        );
-      })}
-      <br />
-      <Button
-        onClick={() => {
-          showTodoListModal();
-        }}
-      >
-        Add todolist
-      </Button>
+              >
+                {list.name}
+              </div>
+
+              {list._id === listId ? (
+                <OverlayTrigger
+                  placement='top'
+                  overlay={<Tooltip>Delete</Tooltip>}
+                >
+                  <FontAwesomeIcon
+                    icon={faTrash}
+                    size='sm'
+                    onClick={(e: React.MouseEvent) => {
+                      deleteTodoList(e);
+                      e.stopPropagation();
+                    }}
+                  />
+                </OverlayTrigger>
+              ) : null}
+            </ListGroup.Item>
+          );
+        })}
+        <br />
+        <Button
+          id='add-button'
+          onClick={() => {
+            showTodoListModal();
+          }}
+        >
+          Add todolist
+        </Button>
+      </div>
     </>
   );
 };

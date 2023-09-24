@@ -195,7 +195,7 @@ const Todos = ({ listId }: TodosProps) => {
         </div>
 
         {todo._id === todoId ? (
-          <div>
+          <div id='todo-buttons'>
             {todo.completed ? (
               <OverlayTrigger
                 placement='top'
@@ -231,18 +231,19 @@ const Todos = ({ listId }: TodosProps) => {
                 />
               </OverlayTrigger>
             )}
-
-            <FontAwesomeIcon
-              icon={faTrash}
-              size='sm'
-              onClick={(e) => {
-                const clickedElement = e.currentTarget;
-                const todoElement: any = clickedElement.closest('button');
-                todoElement?.classList.remove('active');
-                todoElement?.blur();
-                deleteTodo(todo._id);
-              }}
-            />
+            <OverlayTrigger placement='top' overlay={<Tooltip>Delete</Tooltip>}>
+              <FontAwesomeIcon
+                icon={faTrash}
+                size='sm'
+                onClick={(e) => {
+                  const clickedElement = e.currentTarget;
+                  const todoElement: any = clickedElement.closest('button');
+                  todoElement?.classList.remove('active');
+                  todoElement?.blur();
+                  deleteTodo(todo._id);
+                }}
+              />
+            </OverlayTrigger>
           </div>
         ) : null}
       </ListGroup.Item>
@@ -416,7 +417,7 @@ const Todos = ({ listId }: TodosProps) => {
         </Modal.Body>
       </Modal>
       {data.todos.length > 0 ? (
-        <div>
+        <div id='all-todos'>
           {incompleteTodos.length > 0 ? (
             <div>
               Incomplete

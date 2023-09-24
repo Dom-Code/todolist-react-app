@@ -30,11 +30,8 @@ const AccountTabs = () => {
             }
           }}
         >
-          <Tab eventKey='/todolist-react-app/account' title='Account'></Tab>
-          <Tab
-            eventKey='/todolist-react-app/account/logout'
-            title='Logout'
-          ></Tab>
+          <Tab eventKey='/account' title='Account'></Tab>
+          <Tab eventKey='/account/logout' title='Logout'></Tab>
         </Tabs>
       ) : (
         <Tabs

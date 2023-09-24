@@ -121,13 +121,6 @@ const Login = () => {
           Logging you in. You will be redirected soon.
         </Modal.Body>
       </Modal>
-      <Button
-        onClick={() => {
-          data.setAccessToken('');
-        }}
-      >
-        Delete access token
-      </Button>
     </>
   );
 };
