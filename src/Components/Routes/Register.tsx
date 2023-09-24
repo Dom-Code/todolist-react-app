@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Formik } from 'formik';
 import { object, string } from 'yup';
+import { AxiosResponse } from '../../../node_modules/axios/index';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -49,10 +50,10 @@ const Register = () => {
 
     axios({
       method: 'post',
-      url: 'http://localhost:5000/api/register',
+      url: 'http://localhost:4000/api/register',
       data: registerData,
     })
-      .then((response) => {
+      .then((response: AxiosResponse) => {
         console.log(response.status);
         handleShowModal();
       })
