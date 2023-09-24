@@ -1,11 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Lists from '../Lists';
 import Todos from '../Todos';
 // import Todos from './Todos';
 import { Container, Col, Row, ListGroup } from 'react-bootstrap';
 import '../style/TodoListMain.css';
-import useValidation from '../../Hooks/useValidation';
-import { useNavigate } from 'react-router-dom';
 
 export interface GeneralObject {
   key: string;
@@ -22,8 +20,6 @@ export interface TodosProps {
 
 const TodoListMain = () => {
   const [listId, setListId] = useState<null | string>(null);
-  const { isValid } = useValidation();
-  const nav = useNavigate();
 
   // useEffect(() => {
   //   if (!isValid) {

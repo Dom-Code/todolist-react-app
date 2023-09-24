@@ -7,7 +7,8 @@
   margin: 0 auto;
   /* padding-top: 3%; */
   /* width: 80%; */
-
+  /* border: 2px solid red; */
+  max-width: 1000px;
 
 }
 
@@ -27,14 +28,15 @@ float: right;
 }
 
 #todoListContainer {
-  max-width: 400px;
+  /* max-width: 400px; */
   
 }
 
 #todosContainer {
-  max-width: 400px;
+  /* max-width: 400px; */
 }
 
 #lists-todos {
-
+  /* border: 2px solid red; */
+  
 }

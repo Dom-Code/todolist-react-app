@@ -1,13 +1,11 @@
 // import React from 'react';
 
 import { Outlet, Link } from 'react-router-dom';
-import useValidation from './Hooks/useValidation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faHome } from '@fortawesome/free-solid-svg-icons';
 import './App.css';
 
 const Nav = () => {
-  const { isValid } = useValidation();
   return (
     <div>
       <div id='nav-icons'>
