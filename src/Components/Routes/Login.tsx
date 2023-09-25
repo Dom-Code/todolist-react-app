@@ -27,7 +27,7 @@ const Login = () => {
 
     axios({
       method: 'post',
-      url: 'http://localhost:4000/api/login',
+      url: 'https://dom-code.github.io/todolist-api/api/login',
       data: loginData,
     })
       .then((response: AxiosResponse) => {

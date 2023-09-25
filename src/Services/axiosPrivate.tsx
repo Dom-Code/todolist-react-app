@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 export default axios.create({
-  baseURL: 'http://localhost:4000/api',
+  baseURL: 'https://dom-code.github.io/todolist-api/',
 });
 
 export const axiosPrivate = axios.create({
-  baseURL: 'http://localhost:4000/api',
+  baseURL: 'https://dom-code.github.io/todolist-api/',
   headers: { 'Content-Type': 'application/json' },
   // withCredentials: true,
 
