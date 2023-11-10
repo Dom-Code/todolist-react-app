@@ -1,6 +1,6 @@
 import { useRouteError } from 'react-router-dom';
-import Nav from '../../Nav';
-import '../style/errorPage.css';
+import Nav from '../../Components/Navigation/Nav';
+import './errorPage.css';
 
 export default function ErrorPage() {
   const error: any = useRouteError();

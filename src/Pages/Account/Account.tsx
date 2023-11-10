@@ -1,6 +1,6 @@
 import { useContext, useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import AccountTabs from '../AccountTabs';
+import AccountTabs from '../../Components/AccountTabs/AccountTabs';
 import ValidationContext from '../../Context/ValidationContext';
 import useAxiosPrivate from '../../Hooks/useAxiosPrivate';
 import { AxiosResponse } from 'axios';

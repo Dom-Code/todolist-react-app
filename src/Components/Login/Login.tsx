@@ -1,11 +1,10 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { LoginProps } from './Account';
 import { Button, Col, Form, Modal } from 'react-bootstrap';
 import axios from 'axios';
-import '../style/Login.css';
+import './Login.css';
 import ValidationContext from '../../Context/ValidationContext';
-import { AxiosResponse } from '../../../node_modules/axios/index';
+import { AxiosResponse } from 'axios';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -43,7 +42,6 @@ const Login = () => {
 
         setTimeout(() => {
           handleCloseModal();
-          // navigate('/todolist-react-app');
         }, 3000);
       })
       .catch((err) => {
@@ -95,12 +93,6 @@ const Login = () => {
             isValid={isInvalid}
           />
         </Form.Group>
-
-        {/* <FormGroup>
-          <Col smOffset={2} sm={10}>
-            <Checkbox>Remember me</Checkbox>
-          </Col>
-        </FormGroup> */}
 
         <Form.Group>
           <Col smoffset={2} sm={10}>

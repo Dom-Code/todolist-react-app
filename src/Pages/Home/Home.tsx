@@ -2,9 +2,9 @@ import { useContext, useEffect } from 'react';
 import ValidationContext from '../../Context/ValidationContext';
 import useAxiosPrivate from '../../Hooks/useAxiosPrivate';
 import { AxiosResponse } from 'axios';
-import TodoListMain from './TodoListMain';
+import TodoListMain from '../../Components/Todolist/TodoListMain';
 import useValidation from '../../Hooks/useValidation';
-import '../style/Home.css';
+import './Home.css';
 
 const Home = () => {
   const data = useContext(ValidationContext);

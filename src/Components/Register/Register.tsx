@@ -5,14 +5,13 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import Modal from 'react-bootstrap/Modal';
-import '../style/Register.css';
+import './Register.css';
 import axios from 'axios';
-// import { RegisterFormProps } from './Account';
 import { useNavigate } from 'react-router-dom';
 
 import { Formik } from 'formik';
 import { object, string } from 'yup';
-import { AxiosResponse } from '../../../node_modules/axios/index';
+import { AxiosResponse } from 'axios';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -64,17 +63,6 @@ const Register = () => {
         console.log(err.response.status);
       });
   };
-
-  // useEffect(() => {
-  //   if (email !== null && name !== null && password !== null) {
-  //     setSubmitButtonDisabled(false);
-  //   }
-  //   if (email) {
-  //     setUserEmail(email);
-  //   } else {
-  //     setUserEmail('');
-  //   }
-  // }, [email, name, password, setUserEmail]);
 
   return (
     <div id='register'>

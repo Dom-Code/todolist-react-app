@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import Lists from '../Lists';
-import Todos from '../Todos';
+import Lists from './Lists/Lists';
+import Todos from './Todos/Todos';
 // import Todos from './Todos';
 import { Container, Col, Row, ListGroup } from 'react-bootstrap';
-import '../style/TodoListMain.css';
+import './TodoListMain.css';
 
 export interface GeneralObject {
   key: string;

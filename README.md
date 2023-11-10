@@ -1,27 +1,88 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+```markdown
+# React Todo List App
 
-Currently, two official plugins are available:
+A simple todo list application built with React, Axios, Vite, TypeScript, Formik, React Router DOM, React Bootstrap, and hosted on GitHub Pages.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Dependencies](#dependencies)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Expanding the ESLint configuration
+## Overview
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+This React Todo List App is a straightforward task management application that allows users to add, edit, and delete tasks. It's built with React for the user interface, Axios for handling HTTP requests, Vite for the build tooling, TypeScript for static typing, Formik for form management, React Router DOM for navigation, and React Bootstrap for styling components.
 
-- Configure the top-level `parserOptions` property like this:
+## Features
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+- Add, edit, and delete tasks.
+- Mark tasks as completed.
+- Responsive design for various screen sizes.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Installation
+
+Follow these steps to run the app locally:
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-username/react-todo-app.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd react-todo-app
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+## Usage
+
+1. Run the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+   This will start the development server. The url to will be displated in the terminal. 
+
+2. To build the production-ready app:
+
+   ```bash
+   npm run build
+   ```
+
+3. To deploy to GitHub Pages:
+
+   ```bash
+   npm run deploy
+   ```
+
+## Dependencies
+
+- React
+- Axios
+- Vite
+- TypeScript
+- Formik
+- React Router DOM
+- React Bootstrap
+
+For a complete list of dependencies, check the `package.json` file.
+
+## Contributing
+
+If you'd like to contribute to this project, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and submit a pull request.

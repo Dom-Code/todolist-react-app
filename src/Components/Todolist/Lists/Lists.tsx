@@ -7,13 +7,13 @@ import {
   OverlayTrigger,
   Tooltip,
 } from 'react-bootstrap';
-import { ListProps } from './Routes/TodoListMain';
+import { ListProps } from '../TodoListMain';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ValidationContext from '../Context/ValidationContext';
+import ValidationContext from '../../../Context/ValidationContext';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import useAxiosPrivate from '../Hooks/useAxiosPrivate';
-import './style/Lists.css';
-import { AxiosError, AxiosResponse } from '../../node_modules/axios/index';
+import useAxiosPrivate from '../../../Hooks/useAxiosPrivate';
+import './Lists.css';
+import { AxiosError, AxiosResponse } from 'axios';
 import * as React from 'react';
 
 export interface currentListIdProps {

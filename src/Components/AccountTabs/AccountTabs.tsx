@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Tab, Tabs } from 'react-bootstrap';
-import ValidationContext from '../Context/ValidationContext';
+import ValidationContext from '../../Context/ValidationContext';
 
 const AccountTabs = () => {
   const [tabSelection, setTabSelection] = useState('');

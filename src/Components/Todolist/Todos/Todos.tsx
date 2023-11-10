@@ -7,7 +7,7 @@ import {
   Tooltip,
   OverlayTrigger,
 } from 'react-bootstrap';
-import './style/Todos.css';
+import './Todos.css';
 import debounce from 'lodash.debounce';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -16,11 +16,11 @@ import {
   faCheck,
 } from '@fortawesome/free-solid-svg-icons';
 import { AxiosRequestConfig } from 'axios';
-import ValidationContext from '../Context/ValidationContext';
-import { TodosProps } from './Routes/TodoListMain';
-import useAxiosPrivate from '../Hooks/useAxiosPrivate';
-import { AxiosError, AxiosResponse } from '../../node_modules/axios/index';
-import { Todo } from '../Context/ValidationContext';
+import ValidationContext from '../../../Context/ValidationContext';
+import { TodosProps } from '../TodoListMain';
+import useAxiosPrivate from '../../../Hooks/useAxiosPrivate';
+import { AxiosError, AxiosResponse } from 'axios';
+import { Todo } from '../../../Context/ValidationContext';
 import * as React from 'react';
 
 const Todos = ({ listId }: TodosProps) => {
