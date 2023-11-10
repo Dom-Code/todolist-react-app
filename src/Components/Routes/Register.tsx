@@ -50,7 +50,7 @@ const Register = () => {
 
     axios({
       method: 'post',
-      url: 'http://localhost:4000/api/register',
+      url: 'https://haunted-wizard-63978-48bf82cc3a5b.herokuapp.com/register/',
       data: registerData,
     })
       .then((response: AxiosResponse) => {

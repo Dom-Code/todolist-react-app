@@ -8,7 +8,8 @@ const useRefreshToken = () => {
   const refresh = async () => {
     const refreshToken = sessionStorage.getItem('todolistRefreshToken');
     const response = await axios
-      .post('https://dom-code.github.io/todolist-api/api/refresh', {
+      .post('https://haunted-wizard-63978-48bf82cc3a5b.herokuapp.com/refresh', {
+        // .post('http://localhost:4000/api/refresh', {
         // withCredentials: true,
         token: refreshToken,
       })
