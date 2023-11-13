@@ -33,7 +33,7 @@ const Home = () => {
   }, []);
 
   return (
-    <>
+    <div id='home'>
       {isValid ? (
         <TodoListMain />
       ) : (
@@ -42,7 +42,7 @@ const Home = () => {
           <p>Please create an account or Log in</p>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

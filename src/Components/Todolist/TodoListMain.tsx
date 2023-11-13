@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import Lists from './Lists/Lists';
 import Todos from './Todos/Todos';
-// import Todos from './Todos';
 import { Container, Col, Row, ListGroup } from 'react-bootstrap';
 import './TodoListMain.css';
-
 export interface GeneralObject {
   key: string;
 }
@@ -35,16 +33,17 @@ const TodoListMain = () => {
       </div>
       <Container id='container'>
         <Row xs={1} md={2} id='lists-todos'>
-          <Col id='left-col'>
-            <div>List</div>
-            <ListGroup id='todoListContainer'>
+          <Col className='cols'>
+            <div className='container-title'>List</div>
+            <ListGroup>
               <Lists listId={listId} setListId={setListId} />
             </ListGroup>
           </Col>
-          <Col id='right-col'>
-            <div>Todos</div>
+
+          <Col className='cols'>
+            <div className='container-title'>Todos</div>
             {listId ? (
-              <ListGroup id='todosContainer'>
+              <ListGroup>
                 <Todos listId={listId} />
               </ListGroup>
             ) : null}

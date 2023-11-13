@@ -315,7 +315,6 @@ const Todos = ({ listId }: TodosProps) => {
   return (
     <div>
       {/* create new todo Modal */}
-
       <Modal show={showTodoModal} onHide={closeTodoModal}>
         <Modal.Header closeButton></Modal.Header>
         {todoSubmitted ? (
@@ -355,9 +354,7 @@ const Todos = ({ listId }: TodosProps) => {
           </Modal.Body>
         )}
       </Modal>
-
       {/* edit todo Modal */}
-
       <Modal show={showEditModal} onHide={closeEditModal}>
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
@@ -416,13 +413,74 @@ const Todos = ({ listId }: TodosProps) => {
           </Form>
         </Modal.Body>
       </Modal>
+      <div id='todo-container'>
+        <div id='all-todos'>
+          <div className='complete-status-title'>Not Done</div>
+          <div id='todos-box'>
+            {incompleteTodos.map((todo: Todo, i) => {
+              // console.log(todo);
+              return createListItem(todo, i);
+            })}
+          </div>
+          {/* {incompleteTodos.length > 0 ? (
+            <div>
+              <div className='complete-status-title'>Not Done</div>
+              <div id='todos-box'>
+                {incompleteTodos.map((todo: Todo, i) => {
+                  // console.log(todo);
+                  return createListItem(todo, i);
+                })}
+              </div>
+            </div>
+          ) : (
+            <div>
+              <div className='complete-status-title'>Not Done</div>
+              None
+            </div>
+          )} */}
+          <div className='complete-status-title'>Done</div>
+          <div id='todos-box'>
+            {completeTodos.map((todo: Todo, i) => {
+              return createListItem(todo, i);
+            })}
+          </div>
+          {/* {completeTodos.length > 0 ? (
+            <div>
+              <div className='complete-status-title'>Done</div>
+              <div id='todos-box'>
+                {completeTodos.map((todo: Todo, i) => {
+                  return createListItem(todo, i);
+                })}
+              </div>
+            </div>
+          ) : (
+            <div>
+              <div className='complete-status-title'>Done</div>
+              None
+            </div>
+          )} */}
+          <br />
+        </div>
+        <div className='add-todo-button-box'>
+          <Button
+            className='add-buttons'
+            onClick={() => {
+              setShowTodoModal(true);
+            }}
+          >
+            Add Todo
+          </Button>
+        </div>
+      </div>
+
+      {/*}          
+      
       {data.todos.length > 0 ? (
         <div id='all-todos'>
           {incompleteTodos.length > 0 ? (
             <div>
-              Incomplete
-              <br />
-              <div id='todos-box'>
+              <div className='complete-status-title'>Not Done</div>
+                            <div id='todos-box'>
                 {incompleteTodos.map((todo: Todo, i) => {
                   // console.log(todo);
                   return createListItem(todo, i);
@@ -432,44 +490,21 @@ const Todos = ({ listId }: TodosProps) => {
           ) : null}
           {completeTodos.length > 0 ? (
             <div>
-              Completed
-              <br />
+              <div className='complete-status-title'>Done</div>
               <div id='todos-box'>
                 {completeTodos.map((todo: Todo, i) => {
-                  /*
-                  input: array of objects
-                  output/sideffect: return a call to 
-                  createListItem with an object that has 
-                  items specific to the Todo interface as 
-                  first argument and i as a second argument. 
-
-                  edge cases: 
-                    -input array is empty.
-                    - object does not have specific item
-
-                  plan
-                    - iterate over array of todos with map
-                    - at each todo object 
-                      -> create an object 
-                      -> assign wanted elements to new objects
-                      * concern
-                        -> does assigning a key value pair from another 
-                        object create a copy or a reference? 
-                
-
-                  */
-
                   return createListItem(todo, i);
                 })}
               </div>
             </div>
           ) : null}
           <Button
+            className='add-buttons'
             onClick={() => {
               setShowTodoModal(true);
             }}
           >
-            Create new Todo
+            Add Todo
           </Button>
         </div>
       ) : (
@@ -482,6 +517,8 @@ const Todos = ({ listId }: TodosProps) => {
           Create New Todo
         </Button>
       )}
+
+      */}
     </div>
   );
 };

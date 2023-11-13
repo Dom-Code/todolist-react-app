@@ -4,39 +4,41 @@
 }
 
 #container {
+  position: relative;
   margin: 0 auto;
   /* padding-top: 3%; */
-  /* width: 80%; */
-  /* border: 2px solid red; */
-  max-width: 1000px;
-
+  width: 100%;
+  min-width: 700px;
+  height: 100%;
 }
 
-#left-col {
-  /* height: 80vh;
-  max-width: 50vw; */
-  /* border: 2px solid red */
-  /* position: inherit; */
-float:left;
-width: 50%;
+.cols {
+  position: absolute;
+  width: 50%;
+  top: 0;
+  height: 800px;
 }
 
-#right-col {
-width: 50%;
-float: right;
-
+.cols:first-child {
+  left: 0
 }
 
-#todoListContainer {
-  /* max-width: 400px; */
-  
+.cols:last-child{
+  left: 50%
 }
 
-#todosContainer {
-  /* max-width: 400px; */
+
+.listItem {
+  display:inline-flex;
+  justify-content: space-between;
+  margin-right: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 40px;
+  align-items: center;
+  /* width: 340px */
 }
 
-#lists-todos {
-  /* border: 2px solid red; */
-  
+.container-title {
+  margin-bottom: 20px;
 }

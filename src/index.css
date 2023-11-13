@@ -7,11 +7,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: clamp(12px, 1.1vw, 16px); /* Set the font size with a minimum of 16px, maximum of 2vw, and a maximum of 24px */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+    
 }
 
 #root {
@@ -24,5 +26,4 @@ code {
   justify-content: center;
   height: 100vh; /* Adjust as needed */
   padding-top: 15px;
-
 }
