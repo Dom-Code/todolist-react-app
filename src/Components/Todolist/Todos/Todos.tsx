@@ -315,7 +315,11 @@ const Todos = ({ listId }: TodosProps) => {
   return (
     <div>
       {/* create new todo Modal */}
-      <Modal show={showTodoModal} onHide={closeTodoModal}>
+      <Modal
+        className='todo-modal'
+        show={showTodoModal}
+        onHide={closeTodoModal}
+      >
         <Modal.Header closeButton></Modal.Header>
         {todoSubmitted ? (
           <Modal.Body>Todolist was created.</Modal.Body>
@@ -355,7 +359,11 @@ const Todos = ({ listId }: TodosProps) => {
         )}
       </Modal>
       {/* edit todo Modal */}
-      <Modal show={showEditModal} onHide={closeEditModal}>
+      <Modal
+        className='todo-modal'
+        show={showEditModal}
+        onHide={closeEditModal}
+      >
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
           <Form

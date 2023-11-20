@@ -1,7 +1,10 @@
+.list-modal {
+  padding-top: 100px
+}
+
 .list-name {
   text-align: center;
   cursor: text;
-  
 }
 
 #edit-error {

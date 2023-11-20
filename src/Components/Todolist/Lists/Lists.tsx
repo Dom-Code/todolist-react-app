@@ -126,7 +126,11 @@ const Lists = ({ listId, setListId }: ListProps) => {
 
   return (
     <>
-      <Modal show={todoListModal} onHide={closeTodoListModal}>
+      <Modal
+        className='list-modal'
+        show={todoListModal}
+        onHide={closeTodoListModal}
+      >
         <Modal.Header closeButton></Modal.Header>
         {todoListSubmitted ? (
           <Modal.Body>Todolist was created.</Modal.Body>
@@ -156,7 +160,11 @@ const Lists = ({ listId, setListId }: ListProps) => {
           </Modal.Body>
         )}
       </Modal>
-      <Modal show={editListModal} onHide={closeEditTodoListModal}>
+      <Modal
+        className='list-modal'
+        show={editListModal}
+        onHide={closeEditTodoListModal}
+      >
         <Modal.Header closeButton>
           {' '}
           {editError.length > 0 ? <div id='edit-error'>{editError}</div> : null}
