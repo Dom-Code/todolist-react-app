@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ValidationContext from '../../Context/ValidationContext';
 import useAxiosPrivate from '../../Hooks/useAxiosPrivate';
 import { AxiosResponse } from 'axios';
@@ -11,7 +11,6 @@ const Home = () => {
   const data = useContext(ValidationContext);
   const axiosPrivate = useAxiosPrivate();
   const { isValid } = useValidation();
-  const nav = useNavigate();
 
   useEffect(() => {
     // Would like to add a counter. Currently when user clicks on home, data
@@ -33,10 +32,6 @@ const Home = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const navToRegister = () => {
-    nav('/account/register');
-  };
 
   return (
     <div id='home'>

@@ -1,13 +1,14 @@
 import axios from 'axios';
 
 export default axios.create({
-  baseURL: 'https://haunted-wizard-63978-48bf82cc3a5b.herokuapp.com/',
+  // baseURL: 'https://haunted-wizard-63978-48bf82cc3a5b.herokuapp.com/',
+  baseURL: 'http://localhost:4000/',
 });
 
 export const axiosPrivate = axios.create({
-  // baseURL: 'http://localhost:4000/api',
+  baseURL: 'http://localhost:4000/',
 
-  baseURL: 'https://haunted-wizard-63978-48bf82cc3a5b.herokuapp.com/',
+  // baseURL: 'https://haunted-wizard-63978-48bf82cc3a5b.herokuapp.com/',
   headers: { 'Content-Type': 'application/json' },
   // withCredentials: true,
 

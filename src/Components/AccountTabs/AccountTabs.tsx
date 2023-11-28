@@ -4,9 +4,12 @@ import { Tab, Tabs } from 'react-bootstrap';
 import ValidationContext from '../../Context/ValidationContext';
 
 const AccountTabs = () => {
-  const [tabSelection, setTabSelection] = useState('');
-  const navigate = useNavigate();
   const location = useLocation();
+
+  const [tabSelection, setTabSelection] = useState(
+    location.pathname.split('/')[2]
+  );
+  const navigate = useNavigate();
   const data = useContext(ValidationContext);
 
   useEffect(() => {
@@ -16,6 +19,9 @@ const AccountTabs = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    console.log(location);
+  }, []);
   return (
     <>
       {data.isValid ? (
