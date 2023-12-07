@@ -19,10 +19,10 @@ const Home = () => {
     axiosPrivate
       .get('/getUsersTodolists')
       .then((response: AxiosResponse) => {
+        data.setUserName(response.data.userName);
         data.setIsValid(true);
         data.setLists(response.data.lists);
         data.setTodos(response.data.todos);
-        // navigate('/todolists');
       })
       .catch(() => {
         data.setIsValid(false);

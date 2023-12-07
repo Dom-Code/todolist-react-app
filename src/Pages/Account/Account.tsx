@@ -19,23 +19,23 @@ const Account = () => {
   const nav = useNavigate();
   const axiosPrivate = useAxiosPrivate();
 
-  useEffect(() => {
-    if (!data.isValid) {
-      axiosPrivate
-        .get('/getUsersTodolists')
-        .then((response: AxiosResponse) => {
-          data.setIsValid(true);
-          data.setLists(response.data.lists);
-          data.setTodos(response.data.todos);
-          nav('/');
-        })
-        .catch(() => {
-          data.setIsValid(false);
-          data.setLists([]);
-          data.setTodos([]);
-        });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!data.isValid) {
+  //     axiosPrivate
+  //       .get('/getUsersTodolists')
+  //       .then((response: AxiosResponse) => {
+  //         data.setIsValid(true);
+  //         data.setLists(response.data.lists);
+  //         data.setTodos(response.data.todos);
+  //         nav('/');
+  //       })
+  //       .catch(() => {
+  //         data.setIsValid(false);
+  //         data.setLists([]);
+  //         data.setTodos([]);
+  //       });
+  //   }
+  // }, []);
 
   return (
     <>

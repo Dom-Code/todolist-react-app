@@ -30,6 +30,8 @@ interface iValidation {
   setLists: React.Dispatch<React.SetStateAction<Array<IList>>>;
   todos: Array<Todo>;
   setTodos: React.Dispatch<React.SetStateAction<Array<Todo>>>;
+  userName: string;
+  setUserName: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const defaultContext = {
@@ -41,6 +43,8 @@ const defaultContext = {
   setLists: () => {},
   todos: [],
   setTodos: () => {},
+  userName: '',
+  setUserName: () => {},
 };
 
 const ValidationContext = createContext<iValidation>(defaultContext);

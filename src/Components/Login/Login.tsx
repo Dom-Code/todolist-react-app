@@ -44,7 +44,7 @@ const Login = () => {
           handleCloseModal();
         }, 3000);
       })
-      .catch((err) => {
+      .catch((err: AxiosError) => {
         console.log(err);
         setIsInvalid(true);
       });

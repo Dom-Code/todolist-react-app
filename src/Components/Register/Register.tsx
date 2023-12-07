@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -24,7 +24,7 @@ const Register = () => {
       navigate('/account/login');
     }, 3000);
   };
-  // const [submitButtonDisabled, setSubmitButtonDisabled] = useState(true);
+  const [submitButtonDisabled, setSubmitButtonDisabled] = useState(true);
   const [email, setEmail] = useState<null | string>(null);
   const [name, setName] = useState<null | string>(null);
   const [password, setPassword] = useState<null | string>(null);
@@ -63,6 +63,10 @@ const Register = () => {
         console.log(err.response.status);
       });
   };
+
+  useEffect(() => {
+    setSubmitButtonDisabled(!(name && email));
+  }, [name, email]);
 
   return (
     <div id='register'>
@@ -183,10 +187,10 @@ const Register = () => {
             </Row>
             <Button
               id='submit-button'
-              // disabled={submitButtonDisabled}
+              disabled={submitButtonDisabled}
               type='submit'
             >
-              Submit form
+              Submit
             </Button>
           </Form>
         )}
